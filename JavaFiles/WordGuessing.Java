@@ -3,9 +3,16 @@
  * Name:    Kenneth Cox
  * E-mail:  Integralcalc1050@gmail.com
  * Course:  CS 152 - Section 00x
- * Date submitted:    
+ * Date submitted: 20Oct20 
  *
  * A program that plays a word guessing game
+ * the class methods I had to create were:
+ ------------------
+ * pickWordAtRandom
+ * isIncomplete
+ * updateWithGuess
+ -------------------
+
 ***********************************************/
 
 import java.util.Scanner;
@@ -45,10 +52,10 @@ public class WordGuessing {
      * @return True if letter was found in word.
      */
     public static boolean updateWithGuess(char[] knownLetters, char guessedLetter, String word) {
+      guessedLetter = Character.toLowerCase(guessedLetter);
       if(word.contains(Character.toString(guessedLetter))){ 
         int i = word.indexOf(guessedLetter);
         while(i >= 0){
-          System.out.println(i);
           knownLetters[i] = guessedLetter;  
           i = word.indexOf(guessedLetter, i + 1);
         }
@@ -57,14 +64,12 @@ public class WordGuessing {
       return false;
     }
 
-
     /**
      * This method prints ASCII art of the person.
      * You don't need to change this method.
      * @param guesses The number of guesses remaining.
      */
     public static void drawAsciiMan(int guesses){
-
         
         System.out.println(" |" );
 
@@ -164,7 +169,6 @@ public class WordGuessing {
 
         String word = pickWordAtRandom(words);
         
-        System.out.println(word);
         char[] known = new char[word.length()];
         for(int i = 0; i < known.length; i++) {
             known[i] = BLANK;
