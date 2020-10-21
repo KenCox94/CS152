@@ -1,6 +1,7 @@
 # CS152
 University of New Mexico - CS152
 
+[Syllabus and Schedule](https://handandmachine.cs.unm.edu/classes/CS152_Fall2020/index.html)
 
 ## Software Requirements
 ###### Languages
