@@ -1,0 +1,23 @@
+Your project should include all of the elements below.
+
+The screen should be at least 500 pixels by 500 pixels. The dimensions can vary depending upon your program, but make sure that it is not "small".
+Create a nice background for your vehicle to move around in.
+Create a vehicle class as described above. Start from this sample class code
+The vehicle should consist of at least 5 primitive shapes (ie: ellipses, rectangles, etc.) and lines.
+Your vehicle should be controlled using the up, down, left, and right arrow keys.
+Include the appropriate source code header:
+/*********************************************************
+ * Assignment x
+ * Name:    First Last
+ * E-mail: 
+ * Course:      CS 152
+ * Submitted:    
+ *
+ * Description here
+ *********************************************************/
+
+Extra credit #1: Your program should prevent your vehicle from moving off of the screen. If you hit the edge of the screen, the vehicle should appear on the other side of the screen. That is, if it moves off of the right side of the screen it should reappear on the left side. If it moves off of the bottom of the screen it should reappear on the top.
+
+
+
+Extra credit #2: Add an instance variable called vehicleSize. Add a new constructor that allows you to create vehicles of different sizes. Add a method that allows you to change the size of a vehicle that has already been created.

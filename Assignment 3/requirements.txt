@@ -9,7 +9,7 @@ The program should be interactive. That is, it should repond to user input in so
 Include at least one conditional statement, i.e. an if() statement, that changes what is drawn on the screen.
 Include the appropriate source code header:
 /*********************************************************
- * Assignment 4
+ * Assignment x
  * Name:    First Last
  * E-mail: 
  * Course:      CS 152

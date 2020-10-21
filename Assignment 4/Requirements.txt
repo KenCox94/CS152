@@ -1,0 +1,27 @@
+Requirements
+
+Your project should include all of the elements below.
+
+Create a 2D array, along with 2 variables that determine the size of the array in both dimensions.
+If the size of the array is changed, the program should still work appropriately. See image below. Note: the size of the text shown on the screen does not need to change as the array size changes.
+Create a grid display of the array on the screen. It should look basically like the grid in the images here, with lines separating each cell.
+The grid should respond to mouse movement by changing color and changing what is displayed in each grid cell as described above.
+If the size of the screen is changed, the grid should still display nicely and the mouseover functionality should still work. See image below.
+All text should be centered in each grid cell.
+Write a function that calculates the average of the numbers in the array. This function should take no arguments and should return the average. See sample code for the basic structure.
+Write code in the mouseClicked() function to call the average() function or generate a new set of random values to store in the array.
+Include the appropriate source code header:
+/*********************************************************
+ * Assignment x
+ * Name:    First Last
+ * E-mail: 
+ * Course:      CS 152
+ * Submitted:    
+ *
+ * Description here
+ *********************************************************/
+
+The visual look of your array display, beyond the fact that it should be a grid that demonstrates the structure of the array, is up to you.
+
+
+Extra credit (5 points): create a fun design or animation that appears only in the cell that your mouse is currently over. All text should still remain readable.
