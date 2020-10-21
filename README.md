@@ -2,7 +2,7 @@
 University of New Mexico - CS152
 
 
-# Software Requirements
+## Software Requirements
 ###### Languages
 [Processing](https://processing.org/)
 
