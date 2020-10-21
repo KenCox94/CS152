@@ -3,6 +3,6 @@ University of New Mexico - CS152
 
 
 
-## Processing Setup
+### Processing Setup
 https://processing.org/
 
