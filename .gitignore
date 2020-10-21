@@ -1,5 +1,7 @@
 Solutions/
 
+#Mac Files
+*.DS_Store
 
 
 # Compiled class file
@@ -10,6 +12,7 @@ Solutions/
 
 # BlueJ files
 *.ctxt
+
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
