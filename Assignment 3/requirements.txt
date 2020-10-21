@@ -1,0 +1,21 @@
+Your project should include all of the elements below.
+
+The art work should be at least 500 pixels by 500 pixels. The dimensions can vary depending upon your design, but make sure that it is not "small".
+Use each of the following drawing primitives at least once: line(), rect(), ellipse(), quad(). You are welcome to use additional drawing features too.
+Use at least 5 different colors. You may use these in many different places including: the background, stroke colors, and fill colors.
+Use at least 3 different stroke weights, using the strokeWeight() function.
+Include your name in your program using the text() function.
+The program should be interactive. That is, it should repond to user input in some way. You can use one or more of the Mouse and Keybord functions to accomplish this.
+Include at least one conditional statement, i.e. an if() statement, that changes what is drawn on the screen.
+Include the appropriate source code header:
+/*********************************************************
+ * Assignment 4
+ * Name:    First Last
+ * E-mail: 
+ * Course:      CS 152
+ * Submitted:    
+ *
+ * Description here
+ *********************************************************/
+
+Your program should be personal and expressive. You are encouraged to use many different drawing primitives in creative ways. An extra 5 points will be awarded to particularly well crafted and creative submissions.
