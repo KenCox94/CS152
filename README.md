@@ -13,7 +13,6 @@
   * learn about conditionals, loops, functions, and basic data structures and get an introduction to different applicatons of computin
 
 
-[Syllabus and Schedule](https://handandmachine.cs.unm.edu/classes/CS152_Fall2020/index.html)
 
 ## Software Requirements
 ###### Languages
