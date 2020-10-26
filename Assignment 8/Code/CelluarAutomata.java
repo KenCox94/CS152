@@ -6,6 +6,11 @@ class CelluarAutomata{
 
         final int ALIVE = 1;
         final int DEAD = 0;
+
+        for(var i : currentStates){
+        	i = DEAD;
+        }
+        currentStates[size/2] = ALIVE;
     }
 
 }
