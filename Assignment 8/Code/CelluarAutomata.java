@@ -10,6 +10,15 @@ class CelluarAutomata{
     	System.out.println();
     }
 
+    public static int rule(int left, int center, int right){
+    	if((left ^ right) == 1 ){
+    		return ALIVE;
+    	}
+    	else{
+    		return DEAD;
+	   	}
+    }
+
     public static void main(String[] args){
         int size = 100;
         int[] currentStates = new int[size];
@@ -18,8 +27,9 @@ class CelluarAutomata{
         for(var i : currentStates){
         	i = DEAD;
         }
-        currentStates[size/2] = ALIVE;
 
+        currentStates[size/2] = ALIVE;
+      
         displayCurrentStates(currentStates);
 
     }
