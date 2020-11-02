@@ -13,14 +13,14 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import java.awt.Color; 
 
-public class Assignment8 extends Canvas {
+public class CelluarAutomata2D extends Canvas {
 
     public static void main (String[] args) {
 
         //Creates the screen for your CA
         JFrame frame = new JFrame("Cellular Automata"); //give screen a name
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Assignment8 canvas = new Assignment8();
+        CelluarAutomata2D canvas = new CelluarAutomata2D();
 
         // Sets the size of the screen
         // See https://docs.oracle.com/javase/9/docs/api/javafx/scene/canvas/Canvas.html
@@ -55,10 +55,10 @@ public class Assignment8 extends Canvas {
         // See https://docs.oracle.com/javase/7/docs/api/java/awt/Graphics.html 
         // for more drawing features
 
-        g.fillRect(200, 100, 10, 10);
+        g.fillRect(200, 100, 100, 100);
         Color c = new Color(200,0,200); 
         g.setColor(c);
-        g.fillOval(299,200,10,10);
+        g.fillOval(299,200,100,100);
     }
 
     /**
