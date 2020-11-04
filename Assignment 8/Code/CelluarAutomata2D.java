@@ -15,6 +15,15 @@ import java.awt.Color;
 
 public class CelluarAutomata2D extends Canvas {
 
+    
+    final int DEAD = 0;
+    final int ALIVE = 1;
+    static int screenSize = 700;
+    static int cellSize = 10;
+    static int arraySize = screenSize / cellSize;
+    int[][] currentStates = new int[arraySize][arraySize];
+    int[][] newStates = new int[arraySize][arraySize];
+
     public static void main (String[] args) {
 
         //Creates the screen for your CA
@@ -24,7 +33,7 @@ public class CelluarAutomata2D extends Canvas {
 
         // Sets the size of the screen
         // See https://docs.oracle.com/javase/9/docs/api/javafx/scene/canvas/Canvas.html
-        canvas.setSize(700, 700);       
+        canvas.setSize(screenSize, screenSize);       
     
 
         // Sets the background color     
@@ -68,6 +77,17 @@ public class CelluarAutomata2D extends Canvas {
      * to rename or delete this method
      */
     public void myMethod () {
+
+        for(var arrays : currentStates){
+            for(var current : arrays){
+                current = DEAD;
+            }
+        }
+
+        currentStates[arraySize/2 - 1][arraySize] = ALIVE;
+        currentStates[arraySize/2][arraySize] = ALIVE;
+        currentStates[arraySize/2 + 1][arraySize] = ALIVE;
+
         // This block of code pauses the 
         // program for 500ms (1/2 of a second)
         // It will be useful for animating your CA
@@ -87,6 +107,20 @@ public class CelluarAutomata2D extends Canvas {
      * Don't change it.
      */
     public void update(Graphics g) {
+        for(var arrays : currentStates){
+            for(var current : arrays){
+                Color aliveColor = new Color(135,67, 200);
+                Color deadColor = new Color(WHITE);
+
+                if(current == ALIVE){
+                    g.setColor(aliveColor);
+                }
+                else{
+                    g.setColor(deadColor);
+                }
+
+            }
+        }
         paint(g);
     }
 }
