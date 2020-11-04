@@ -57,6 +57,7 @@ public class CelluarAutomata2D extends Canvas {
     public void paint(Graphics g) {
         // Sets the fill color to be red
         // See https://docs.oracle.com/javase/7/docs/api/java/awt/Color.html
+  
         g.setColor(Color.red);
 
         // Draws a filled rectangle at position x, y with width w and heigh h:
@@ -64,10 +65,20 @@ public class CelluarAutomata2D extends Canvas {
         // See https://docs.oracle.com/javase/7/docs/api/java/awt/Graphics.html 
         // for more drawing features
 
-        g.fillRect(200, 100, 100, 100);
-        Color c = new Color(200,0,200); 
-        g.setColor(c);
-        g.fillOval(299,200,100,100);
+        for(int i = 0; i < arraySize; i++){
+            for(int j = 0; j<arraySize; j++) {
+                Color aliveColor = new Color(135,67, 200);
+                Color deadColor = new Color(255, 255, 255);
+
+                if(currentStates[i][j]== ALIVE){
+                    g.setColor(aliveColor);
+                    g.fillRect(j*cellSize, i*cellSize, cellSize-1, cellSize-1);
+                }
+                else{
+                    g.setColor(deadColor);
+                }
+            }
+        }
     }
 
     /**
@@ -107,20 +118,6 @@ public class CelluarAutomata2D extends Canvas {
      * Don't change it.
      */
     public void update(Graphics g) {
-        for(var arrays : currentStates){
-            for(var current : arrays){
-                Color aliveColor = new Color(135,67, 200);
-                Color deadColor = new Color(WHITE);
-
-                if(current == ALIVE){
-                    g.setColor(aliveColor);
-                }
-                else{
-                    g.setColor(deadColor);
-                }
-
-            }
-        }
         paint(g);
     }
 }
