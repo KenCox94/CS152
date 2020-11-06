@@ -16,13 +16,12 @@ import java.util.Random;
 
 public class CelluarAutomata2D extends Canvas {
 
-    
-    final int DEAD = 0;
-    final int ALIVE = 1;
+    public static final int DEAD = 0;
+    public static final int ALIVE = 1;
     static int screenSize = 700;
     static int cellSize = 10;
     static int arraySize = screenSize / cellSize;
-    int[][] currentStates = new int[arraySize][arraySize];
+    static int[][] currentStates = new int[arraySize][arraySize];
     int[][] newStates = new int[arraySize][arraySize];
 
     public static void main (String[] args) {
@@ -35,7 +34,6 @@ public class CelluarAutomata2D extends Canvas {
         // Sets the size of the screen
         // See https://docs.oracle.com/javase/9/docs/api/javafx/scene/canvas/Canvas.html
         canvas.setSize(screenSize, screenSize);       
-    
 
         // Sets the background color     
         // See https://docs.oracle.com/javase/7/docs/api/java/awt/Color.html
@@ -44,8 +42,8 @@ public class CelluarAutomata2D extends Canvas {
         frame.pack();
         frame.setVisible(true);
         frame.setResizable(false);
-
-        canvas.myMethod();  //This calls the method myMethod
+        canvas.myMethod(currentStates);  //This calls the method myMethod]
+        
     }
 
     public int gameOfLifeRules(int row, int column){
@@ -60,21 +58,10 @@ public class CelluarAutomata2D extends Canvas {
      * A few sample drawing features are demonstrated below.
      */
     public void paint(Graphics g) {
-        // Sets the fill color to be red
-        // See https://docs.oracle.com/javase/7/docs/api/java/awt/Color.html
-  
-        g.setColor(Color.red);
-
-        // Draws a filled rectangle at position x, y with width w and heigh h:
-        // g.fillRect(x, y, w, h);
-        // See https://docs.oracle.com/javase/7/docs/api/java/awt/Graphics.html 
-        // for more drawing features
-
         for(int i = 0; i < arraySize; i++){
             for(int j = 0; j<arraySize; j++) {
                 Color aliveColor = new Color(135,67, 200);
                 Color deadColor = new Color(255, 255, 255);
-
                 if(currentStates[i][j]== ALIVE){
                     g.setColor(aliveColor);
                     g.fillRect(j*cellSize, i*cellSize, cellSize-1, cellSize-1);
@@ -92,18 +79,9 @@ public class CelluarAutomata2D extends Canvas {
      * to include in your code. Feel free
      * to rename or delete this method
      */
-    public static void myMethod () {
-
-        for(var arrays : currentStates){
-            for(var current : arrays){
-                current = DEAD;
-            }
-        }
-
-        currentStates[arraySize/2 - 1][arraySize/2] = ALIVE;
-        currentStates[arraySize/2][arraySize/2] = ALIVE;
-        currentStates[arraySize/2 + 1][arraySize/2] = ALIVE;
-
+    public void myMethod(int[][] multiDimArray) {
+        fillAllCellsToEmpty(multiDimArray);
+        assignRandomCellsAlive(multiDimArray, 100);
         // This block of code pauses the 
         // program for 500ms (1/2 of a second)
         // It will be useful for animating your CA
@@ -115,31 +93,33 @@ public class CelluarAutomata2D extends Canvas {
         // The repaint() method redraws your screen. 
         // You can use it to refresh your screen after 
         // you've updated your CA to its next state
-        repaint();      
+        //repaint();      
     }
 
-    public static void fillAllCellsToEmpty(){
-    	//
-
+    public static void fillAllCellsToEmpty(int[][] multiDimArray){
+    	for(var arrays : multiDimArray){
+            for(var cells : arrays){
+                cells = DEAD;
+            }
+        }
     }
 
-    public void assignRandomCellsAlive(int[][] multiDimArray, int iters){
+    public static void assignRandomCellsAlive(int[][] multiDimArray, int iters){
     	for(int i = 0; i < iters; i++){
-
-    		int randRow = new Random().nextInt(cellSize);
-    		int randCol = new Random().nextInt(cellSize);
-
+    		int randRow = new Random().nextInt(arraySize);
+    		int randCol = new Random().nextInt(arraySize);
     		if(multiDimArray[randRow][randCol] != ALIVE){
     			multiDimArray[randRow][randCol] = ALIVE;
-    		}
-    		else{
-    			continue; 
     		}
     	}
     }
 
-    public static void calculateNextStates(){
+    public static void calculateNextStates(int[][] multiDimArray){
+        for(int i = 0; i < arraySize; i++){
+            for(int j = 0; j < arraySize; j++){
 
+            }
+        }
     }
 
     /**
