@@ -12,6 +12,7 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 import java.awt.Color; 
+import java.util.Random;
 
 public class CelluarAutomata2D extends Canvas {
 
@@ -45,6 +46,10 @@ public class CelluarAutomata2D extends Canvas {
         frame.setResizable(false);
 
         canvas.myMethod();  //This calls the method myMethod
+    }
+
+    public int gameOfLifeRules(int row, int column){
+    	return -1;
     }
 
     /**
@@ -87,7 +92,7 @@ public class CelluarAutomata2D extends Canvas {
      * to include in your code. Feel free
      * to rename or delete this method
      */
-    public void myMethod () {
+    public static void myMethod () {
 
         for(var arrays : currentStates){
             for(var current : arrays){
@@ -95,9 +100,9 @@ public class CelluarAutomata2D extends Canvas {
             }
         }
 
-        currentStates[arraySize/2 - 1][arraySize] = ALIVE;
-        currentStates[arraySize/2][arraySize] = ALIVE;
-        currentStates[arraySize/2 + 1][arraySize] = ALIVE;
+        currentStates[arraySize/2 - 1][arraySize/2] = ALIVE;
+        currentStates[arraySize/2][arraySize/2] = ALIVE;
+        currentStates[arraySize/2 + 1][arraySize/2] = ALIVE;
 
         // This block of code pauses the 
         // program for 500ms (1/2 of a second)
@@ -111,6 +116,30 @@ public class CelluarAutomata2D extends Canvas {
         // You can use it to refresh your screen after 
         // you've updated your CA to its next state
         repaint();      
+    }
+
+    public static void fillAllCellsToEmpty(){
+    	//
+
+    }
+
+    public void assignRandomCellsAlive(int[][] multiDimArray, int iters){
+    	for(int i = 0; i < iters; i++){
+
+    		int randRow = new Random().nextInt(cellSize);
+    		int randCol = new Random().nextInt(cellSize);
+
+    		if(multiDimArray[randRow][randCol] != ALIVE){
+    			multiDimArray[randRow][randCol] = ALIVE;
+    		}
+    		else{
+    			continue; 
+    		}
+    	}
+    }
+
+    public static void calculateNextStates(){
+
     }
 
     /**
