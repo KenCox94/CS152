@@ -22,7 +22,7 @@ public class CelluarAutomata2D extends Canvas {
     static int cellSize = 10;
     static int arraySize = screenSize / cellSize;
     static int[][] currentStates = new int[arraySize][arraySize];
-    int[][] newStates = new int[arraySize][arraySize];
+    static int[][] newStates = new int[arraySize][arraySize];
 
     public static void main (String[] args) {
 
@@ -37,17 +37,32 @@ public class CelluarAutomata2D extends Canvas {
 
         // Sets the background color     
         // See https://docs.oracle.com/javase/7/docs/api/java/awt/Color.html
-        canvas.setBackground(Color.white);
+        canvas.setBackground(new Color(245, 240, 190));
         frame.add(canvas);
         frame.pack();
         frame.setVisible(true);
-        frame.setResizable(false);
+        //frame.setResizable(false);
         canvas.myMethod(currentStates);  //This calls the method myMethod]
         
     }
 
-    public int gameOfLifeRules(int row, int column){
-    	return -1;
+    public static int gameOfLifeRules(int row, int column){
+    	int neighborSums = currentStates[row-1][column - 1] + 
+        currentStates[row-1][column] + 
+        currentStates[row-1][column + 1] + 
+        currentStates[row][column - 1] + 
+        currentStates[row][column + 1] + 
+        currentStates[row + 1][column-1] + 
+        currentStates[row+1][column] + 
+        currentStates[row+1][column+1];
+        
+        if( (neighborSums == 2 || neighborSums == 3) && currentStates[row][column] == ALIVE){ 
+            return ALIVE; 
+        }
+        else if(currentStates[row][column] == DEAD && neighborSums == 3){ 
+            return ALIVE; 
+        }
+        return DEAD;
     }
 
     /**
@@ -58,16 +73,17 @@ public class CelluarAutomata2D extends Canvas {
      * A few sample drawing features are demonstrated below.
      */
     public void paint(Graphics g) {
+        Color aliveColor = new Color(135,67, 200);
+        Color deadColor = new Color(255, 255, 255);
         for(int i = 0; i < arraySize; i++){
             for(int j = 0; j<arraySize; j++) {
-                Color aliveColor = new Color(135,67, 200);
-                Color deadColor = new Color(255, 255, 255);
-                if(currentStates[i][j]== ALIVE){
+                if(currentStates[i][j] == ALIVE){
                     g.setColor(aliveColor);
                     g.fillRect(j*cellSize, i*cellSize, cellSize-1, cellSize-1);
                 }
                 else{
                     g.setColor(deadColor);
+                    g.fillRect(j*cellSize, i*cellSize, cellSize-1, cellSize-1);
                 }
             }
         }
@@ -80,20 +96,23 @@ public class CelluarAutomata2D extends Canvas {
      * to rename or delete this method
      */
     public void myMethod(int[][] multiDimArray) {
-        fillAllCellsToEmpty(multiDimArray);
-        assignRandomCellsAlive(multiDimArray, 100);
+        assignRandomCellsAlive(multiDimArray, 200);
+        while(true){
+            calculateNextStates(multiDimArray);
+            sleep();
+            // The repaint() method redraws your screen. 
+            // You can use it to refresh your screen after 
+            // you've updated your CA to its next state
+            repaint();
+        }      
+    }
+
+    public static void sleep(){
         // This block of code pauses the 
         // program for 500ms (1/2 of a second)
         // It will be useful for animating your CA
-        try{
-            Thread.sleep(500);
-        } 
-        catch (Exception exc){}
-
-        // The repaint() method redraws your screen. 
-        // You can use it to refresh your screen after 
-        // you've updated your CA to its next state
-        //repaint();      
+        try{ Thread.sleep(500); }
+        catch(Exception exc){}
     }
 
     public static void fillAllCellsToEmpty(int[][] multiDimArray){
@@ -115,9 +134,15 @@ public class CelluarAutomata2D extends Canvas {
     }
 
     public static void calculateNextStates(int[][] multiDimArray){
-        for(int i = 0; i < arraySize; i++){
-            for(int j = 0; j < arraySize; j++){
+        for(int i = 1; i < arraySize - 1; i++){
+            for(int j = 1; j < arraySize - 1; j++){
+               newStates[i][j] = gameOfLifeRules(i,j);
+            }
+        }
 
+        for(int i = 0; i < arraySize; i++){
+            for(int j = 0; j<arraySize; j++){
+                currentStates[i][j] = newStates[i][j];
             }
         }
     }
