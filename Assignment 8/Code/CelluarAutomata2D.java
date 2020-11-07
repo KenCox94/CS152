@@ -1,6 +1,6 @@
 /************************************************
  * Assignment 8
- * Name:    Kennet Cox
+ * Name:    Kenneth Cox
  * E-mail:  kecox@unm.edu
  * Course:  CS 152 - Section 00x
  * Date submitted:    
@@ -11,8 +11,8 @@
 import java.awt.Canvas;
 import java.awt.Graphics;
 import javax.swing.JFrame;
-import java.awt.Color; 
-import java.util.Random;
+import java.awt.Color;
+import java.util.Arrays;
 
 public class CelluarAutomata2D extends Canvas {
 
@@ -23,8 +23,10 @@ public class CelluarAutomata2D extends Canvas {
     static int arraySize = screenSize / cellSize;
     static int[][] currentStates = new int[arraySize][arraySize];
     static int[][] newStates = new int[arraySize][arraySize];
+    static GOLAutomata GOL = new GOLAutomata(arraySize);
 
     public static void main (String[] args) {
+
 
         //Creates the screen for your CA
         JFrame frame = new JFrame("Cellular Automata"); //give screen a name
@@ -42,27 +44,8 @@ public class CelluarAutomata2D extends Canvas {
         frame.pack();
         frame.setVisible(true);
         //frame.setResizable(false);
-        canvas.myMethod();  //This calls the method myMethod]
+        canvas.myMethod(GOL);  //This calls the method myMethod]
         
-    }
-
-    int gameOfLifeRules(int row, int column){
-    	int neighborSums = currentStates[row-1][column - 1] + 
-        currentStates[row-1][column] + 
-        currentStates[row-1][column + 1] + 
-        currentStates[row][column - 1] + 
-        currentStates[row][column + 1] + 
-        currentStates[row + 1][column-1] + 
-        currentStates[row+1][column] + 
-        currentStates[row+1][column+1];
-        
-        if( (neighborSums == 2 || neighborSums == 3) && currentStates[row][column] == ALIVE){ 
-            return ALIVE; 
-        }
-        else if(currentStates[row][column] == DEAD && neighborSums == 3){ 
-            return ALIVE; 
-        }
-        return DEAD;
     }
 
     /**
@@ -72,21 +55,8 @@ public class CelluarAutomata2D extends Canvas {
      * call this method. It is called automatically.
      * A few sample drawing features are demonstrated below.
      */
-    public void paint(Graphics g) {
-        Color aliveColor = new Color(135,67, 200);
-        Color deadColor = new Color(255, 255, 255);
-        for(int i = 0; i < arraySize; i++){
-            for(int j = 0; j<arraySize; j++) {
-                if(currentStates[i][j] == ALIVE){
-                    g.setColor(aliveColor);
-                    g.fillRect(j*cellSize, i*cellSize, cellSize-1, cellSize-1);
-                }
-                else{
-                    g.setColor(deadColor);
-                    g.fillRect(j*cellSize, i*cellSize, cellSize-1, cellSize-1);
-                }
-            }
-        }
+    public void paint(Graphics g, AbstractAutomata cellAutomata) {
+        cellAutomata.paintShapes(g, new Color(135,67, 200), new Color(255,255,255), cellSize);
     }
 
     /**
@@ -95,55 +65,17 @@ public class CelluarAutomata2D extends Canvas {
      * to include in your code. Feel free
      * to rename or delete this method
      */
-    public void myMethod() {
-        allStatesDead();
-        currentStates[arraySize/2 - 1][arraySize/2] = ALIVE;
-        currentStates[arraySize/2][arraySize/2] = ALIVE;
-        currentStates[arraySize/2 + 1][arraySize/2] = ALIVE;
-
-        randomArrayAssignment();
-
+    public void myMethod(AbstractAutomata cellAutomata) {
+        cellAutomata.allStatesDead(arraySize);
+        cellAutomata.randomArrayAssignment();
         while(true){
-            playGame();
-            sleep();
+            cellAutomata.playBack(arraySize);
+            cellAutomata.sleep();
             // The repaint() method redraws your screen. 
             // You can use it to refresh your screen after 
             // you've updated your CA to its next state
             repaint();
         }      
-    }
-    
-    public void playGame(){
-        for(int i = 1; i < arraySize - 1; i++){
-            for(int j = 1; j < arraySize - 1; j++){
-                newStates[i][j] = gameOfLifeRules(i,j);
-            }
-        }
-
-        for(int i = 0; i < arraySize; i++){
-            for(int j = 0; j<arraySize; j++){
-                currentStates[i][j] = newStates[i][j];
-            }
-        }
-        
-    }
-
-    public void randomArrayAssignment(){
-        for(int i = 0; i < 600; i++){
-            int randRow = new Random().nextInt(arraySize);
-            int randCol = new Random().nextInt(arraySize);
-            if(currentStates[randRow][randCol] != ALIVE){
-                currentStates[randRow][randCol] = ALIVE;
-            }
-        }
-    }
-
-    public void allStatesDead(){
-        for(int i = 0; i < arraySize; i++){
-            for(int j = 0; j < arraySize; j++){
-                currentStates[i][j] = DEAD;
-            }
-        }
     }
 
     public static void sleep(){
@@ -159,6 +91,6 @@ public class CelluarAutomata2D extends Canvas {
      * Don't change it.
      */
     public void update(Graphics g) {
-        paint(g);
+        paint(g, GOL);
     }
 }
