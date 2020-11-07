@@ -42,11 +42,11 @@ public class CelluarAutomata2D extends Canvas {
         frame.pack();
         frame.setVisible(true);
         //frame.setResizable(false);
-        canvas.myMethod(currentStates);  //This calls the method myMethod]
+        canvas.myMethod();  //This calls the method myMethod]
         
     }
 
-    public static int gameOfLifeRules(int row, int column){
+    int gameOfLifeRules(int row, int column){
     	int neighborSums = currentStates[row-1][column - 1] + 
         currentStates[row-1][column] + 
         currentStates[row-1][column + 1] + 
@@ -95,10 +95,16 @@ public class CelluarAutomata2D extends Canvas {
      * to include in your code. Feel free
      * to rename or delete this method
      */
-    public void myMethod(int[][] multiDimArray) {
-        assignRandomCellsAlive(multiDimArray, 200);
+    public void myMethod() {
+        allStatesDead();
+        currentStates[arraySize/2 - 1][arraySize/2] = ALIVE;
+        currentStates[arraySize/2][arraySize/2] = ALIVE;
+        currentStates[arraySize/2 + 1][arraySize/2] = ALIVE;
+
+        randomArrayAssignment();
+
         while(true){
-            calculateNextStates(multiDimArray);
+            playGame();
             sleep();
             // The repaint() method redraws your screen. 
             // You can use it to refresh your screen after 
@@ -106,37 +112,11 @@ public class CelluarAutomata2D extends Canvas {
             repaint();
         }      
     }
-
-    public static void sleep(){
-        // This block of code pauses the 
-        // program for 500ms (1/2 of a second)
-        // It will be useful for animating your CA
-        try{ Thread.sleep(500); }
-        catch(Exception exc){}
-    }
-
-    public static void fillAllCellsToEmpty(int[][] multiDimArray){
-    	for(var arrays : multiDimArray){
-            for(var cells : arrays){
-                cells = DEAD;
-            }
-        }
-    }
-
-    public static void assignRandomCellsAlive(int[][] multiDimArray, int iters){
-    	for(int i = 0; i < iters; i++){
-    		int randRow = new Random().nextInt(arraySize);
-    		int randCol = new Random().nextInt(arraySize);
-    		if(multiDimArray[randRow][randCol] != ALIVE){
-    			multiDimArray[randRow][randCol] = ALIVE;
-    		}
-    	}
-    }
-
-    public static void calculateNextStates(int[][] multiDimArray){
+    
+    public void playGame(){
         for(int i = 1; i < arraySize - 1; i++){
             for(int j = 1; j < arraySize - 1; j++){
-               newStates[i][j] = gameOfLifeRules(i,j);
+                newStates[i][j] = gameOfLifeRules(i,j);
             }
         }
 
@@ -145,6 +125,33 @@ public class CelluarAutomata2D extends Canvas {
                 currentStates[i][j] = newStates[i][j];
             }
         }
+        
+    }
+
+    public void randomArrayAssignment(){
+        for(int i = 0; i < 600; i++){
+            int randRow = new Random().nextInt(arraySize);
+            int randCol = new Random().nextInt(arraySize);
+            if(currentStates[randRow][randCol] != ALIVE){
+                currentStates[randRow][randCol] = ALIVE;
+            }
+        }
+    }
+
+    public void allStatesDead(){
+        for(int i = 0; i < arraySize; i++){
+            for(int j = 0; j < arraySize; j++){
+                currentStates[i][j] = DEAD;
+            }
+        }
+    }
+
+    public static void sleep(){
+        // This block of code pauses the 
+        // program for 500ms (1/2 of a second)
+        // It will be useful for animating your CA
+        try{ Thread.sleep(500); }
+        catch(Exception exc){}
     }
 
     /**
