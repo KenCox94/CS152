@@ -12,7 +12,6 @@ import java.awt.Canvas;
 import java.awt.Graphics;
 import javax.swing.JFrame;
 import java.awt.Color;
-import java.util.Arrays;
 
 public class CelluarAutomata2D extends Canvas {
 
@@ -21,9 +20,7 @@ public class CelluarAutomata2D extends Canvas {
     static int screenSize = 700;
     static int cellSize = 10;
     static int arraySize = screenSize / cellSize;
-    static int[][] currentStates = new int[arraySize][arraySize];
-    static int[][] newStates = new int[arraySize][arraySize];
-    static GOLAutomata GOL = new GOLAutomata(arraySize);
+    static GOLAutomata gol = new GOLAutomata(arraySize);
 
     public static void main (String[] args) {
 
@@ -44,7 +41,7 @@ public class CelluarAutomata2D extends Canvas {
         frame.pack();
         frame.setVisible(true);
         //frame.setResizable(false);
-        canvas.myMethod(GOL);  //This calls the method myMethod]
+        canvas.run(gol);  //This calls the method myMethod]
         
     }
 
@@ -65,7 +62,7 @@ public class CelluarAutomata2D extends Canvas {
      * to include in your code. Feel free
      * to rename or delete this method
      */
-    public void myMethod(AbstractAutomata cellAutomata) {
+    public void run(AbstractAutomata cellAutomata) {
         cellAutomata.allStatesDead(arraySize);
         cellAutomata.randomArrayAssignment();
         while(true){
@@ -91,6 +88,6 @@ public class CelluarAutomata2D extends Canvas {
      * Don't change it.
      */
     public void update(Graphics g) {
-        paint(g, GOL);
+        paint(g, gol);
     }
 }
