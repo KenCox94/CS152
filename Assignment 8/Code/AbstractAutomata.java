@@ -5,18 +5,6 @@ import java.util.Random;
 abstract class AbstractAutomata{
 	public static final int ALIVE = 1;
 	public static final int DEAD = 0;
-	
-    abstract int rules(int row, int column);
-
-    public void randomArrayAssignment(){
-        for(int i = 0; i < 1000; i++){
-            int randRow = new Random().nextInt(currentStates.length);
-            int randcolumn = new Random().nextInt(currentStates[randRow].length);
-            if(currentStates[randRow][randcolumn] != ALIVE){
-                currentStates[randRow][randcolumn] = ALIVE; 
-             }
-        }
-    }
 
 	public void allStatesDead(int arraySize){
         for(int i = 0; i < arraySize; i++){
@@ -27,17 +15,9 @@ abstract class AbstractAutomata{
     }
 
 	public void playBack(int arraySize){
-        for(int i = 1; i < arraySize - 1; i++){
-            for(int j = 1; j < arraySize - 1; j++){
-                newStates[i][j] = rules(i,j);
-            }
-        }
+        _applyRules();    
 
-        for(int i = 0; i < arraySize; i++){
-            for(int j = 0; j<arraySize; j++){
-                currentStates[i][j] = newStates[i][j];
-            }
-        }
+        _changeStates();
     }
 
 	public void paintShapes(Graphics g, Color aliveColor, Color deadColor, int cellSize){
@@ -55,13 +35,29 @@ abstract class AbstractAutomata{
 		}
 	}
 
-	public void sleep(){
+    public void randomArrayAssignment(){
+        for(int i = 0; i < 1000; i++){
+            int randRow = new Random().nextInt(currentStates.length);
+            int randcolumn = new Random().nextInt(currentStates[randRow].length);
+            if(currentStates[randRow][randcolumn] != ALIVE){
+                currentStates[randRow][randcolumn] = ALIVE; 
+             }
+        }
+    }
+
+    public void sleep(){
 		try{ 
 			Thread.sleep(500);
 		}
 		catch(Exception exc){
 		}
 	}
+
+    abstract int rules(int row, int column);
+
+    protected abstract void _applyRules();
+
+    protected abstract void _changeStates();
 
 	int[][] currentStates;
 	int[][] newStates;
