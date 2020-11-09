@@ -20,7 +20,7 @@ public class CelluarAutomata2D extends Canvas {
     static int screenSize = 700;
     static int cellSize = 10;
     static int arraySize = screenSize / cellSize;
-    static GOLAutomata gol = new GOLAutomata(arraySize);
+    static AbstractAutomata gol = new LangtonAnt(arraySize, 50, 50);
 
     public static void main (String[] args) {
 
