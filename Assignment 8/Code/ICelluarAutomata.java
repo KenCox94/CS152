@@ -1,6 +1,0 @@
-interface ICelluarAutomata{
-
-	void randomArrayAssignment(){}
-
-
-}

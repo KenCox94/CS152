@@ -3,7 +3,7 @@
  * Name:    Kenneth Cox
  * E-mail:  kecox@unm.edu
  * Course:  CS 152 - Section 00x
- * Date submitted:    
+ * Date submitted: 9 Nov 2020   
  *
  * A program that generates 2D Cellular Automata
 **************************************************/
@@ -20,6 +20,7 @@ public class CelluarAutomata2D extends Canvas {
     static int screenSize = 700;
     static int cellSize = 10;
     static int arraySize = screenSize / cellSize;
+    //static AbstractAutomata gol = new GOLAutomata(arraySize);
     static AbstractAutomata gol = new LangtonAnt(arraySize, 50, 50);
 
     public static void main (String[] args) {
