@@ -75,14 +75,6 @@ public class CelluarAutomata2D extends Canvas {
         }      
     }
 
-    public static void sleep(){
-        // This block of code pauses the 
-        // program for 500ms (1/2 of a second)
-        // It will be useful for animating your CA
-        try{ Thread.sleep(500); }
-        catch(Exception exc){}
-    }
-
     /**
      * This method reduces flickering of the display
      * Don't change it.

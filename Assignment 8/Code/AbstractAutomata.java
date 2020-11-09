@@ -47,7 +47,7 @@ abstract class AbstractAutomata{
 
     public void sleep(){
 		try{ 
-			Thread.sleep(500);
+			Thread.sleep(10);
 		}
 		catch(Exception exc){
 		}

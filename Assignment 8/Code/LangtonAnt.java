@@ -6,8 +6,8 @@ public class LangtonAnt extends AbstractAutomata{
 		newStates = new int[arraySize][arraySize];
 		this.startVarRow = startVarRow;
 		this.startVarCol = startVarCol;
-		directionLat = 0;
-		directionLon = 1;
+		yChange = 1;
+		xChange = 0;
 	}
 
 	public int rules(int row, int column){
@@ -21,28 +21,29 @@ public class LangtonAnt extends AbstractAutomata{
 
 	protected void _changeStates(){
 		currentStates[startVarRow][startVarCol] = newStates[startVarRow][startVarCol];
-		if(currentStates[startVarCol][startVarRow] == DEAD){
-			if(Math.abs(directionLon) == 1){
-				directionLon *= -1;
-				directionLat = 0;
+		if(currentStates[startVarCol][startVarRow] == ALIVE){
+			if(xChange == 0){
+				xChange = yChange;
+				yChange = 0;
 			}
 			else{
-				directionLat *= -1;
-				directionLon = 0;
+				yChange = -xChange; 
+				xChange = 0;
 			}
 		}
-		if(currentStates[startVarCol][startVarCol] == ALIVE){
-			if(Math.abs(directionLat) == 1){
-				directionLon *= -1;
-				directionLat = 0;
+		else{
+			if(xChange == 0){
+				xChange = -yChange;
+				yChange = 0;
 			}
-			else{
-				directionLon *= -1;
-				directionLat = 0;
+			else{ 
+				yChange = xChange;
+				xChange = 0;
 			}
 		}
-		startVarCol = startCalc(startVarCol, directionLon);
-		startVarRow = startCalc(startVarRow, directionLat); 
+
+		startVarCol = startCalc(startVarCol, xChange);
+		startVarRow = startCalc(startVarRow, yChange); 
 	}
 
 
@@ -51,15 +52,14 @@ public class LangtonAnt extends AbstractAutomata{
 		if(startingValue > currentStates.length - 1){
 			return 0;
 		}
-
 		else if (startingValue < 0){
 			return currentStates.length - 1;
 		} 
 		return startingValue;
 	}
 	 
-	int directionLat;
-	int directionLon;
+	int xChange;
+	int yChange;
 	int startVarRow;
 	int startVarCol;
 }
