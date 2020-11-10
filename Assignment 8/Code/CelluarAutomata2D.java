@@ -40,6 +40,10 @@ public class CelluarAutomata2D extends Canvas {
         
     }
 
+    /* 
+     * @param canvas- CelluarAutomata2D object used for drawing shapes
+     * @param frame- JFrame object used for display
+     */
     public static void setupScreen(CelluarAutomata2D canvas, JFrame frame){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         canvas.setSize(screenSize, screenSize);
