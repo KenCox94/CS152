@@ -29,8 +29,8 @@ public class WordGuessing {
      * @return Randomly chosen word from dictionary.
      */
     public static String pickWordAtRandom(String[] dictionary) {
-        int randInt = new Random().nextInt(dictionary.length);
-        return dictionary[randInt];
+        //int randInt = new Random().nextInt(dictionary.length);
+        return dictionary[new Random().nextInt(dictionary.length)];
     }
     
     /** 
