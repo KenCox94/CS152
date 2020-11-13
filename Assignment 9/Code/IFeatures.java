@@ -1,4 +1,4 @@
-interface IFeature{
+interface IFeatures{
 
 	public void draw();
 	
