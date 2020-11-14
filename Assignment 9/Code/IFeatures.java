@@ -1,6 +1,8 @@
-interface IFeatures{
+import java.awt.Graphics;
 
-	public void draw();
+public interface IFeatures{
+
+	public void draw(Graphics g);
 	
 	public void create();
 }
