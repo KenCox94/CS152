@@ -25,18 +25,8 @@ public class CelluarAutomata2D extends Canvas {
 
     public static void main (String[] args) {
 
-
         //Creates the screen for your CA
         setupScreen(new CelluarAutomata2D(), new JFrame("Cellular Automata"));
-        //CelluarAutomata2D canvas = new CelluarAutomata2D();
-
-        // Sets the size of the screen
-        // See https://docs.oracle.com/javase/9/docs/api/javafx/scene/canvas/Canvas.html    
-
-        // Sets the background color     
-        // See https://docs.oracle.com/javase/7/docs/api/java/awt/Color.html
-        //frame.setResizable(false);
-        //This calls the method myMethod]
         
     }
 
@@ -46,7 +36,11 @@ public class CelluarAutomata2D extends Canvas {
      */
     public static void setupScreen(CelluarAutomata2D canvas, JFrame frame){
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Sets the size of the screen
+        // See https://docs.oracle.com/javase/9/docs/api/javafx/scene/canvas/Canvas.html    
         canvas.setSize(screenSize, screenSize);
+        // Sets the background color     
+        // See https://docs.oracle.com/javase/7/docs/api/java/awt/Color.html
         canvas.setBackground(new Color(245, 240, 190));
         canvas.run(gol);
         frame.add(canvas);
