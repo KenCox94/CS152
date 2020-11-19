@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public class Monster{
+public class Monster implements IFeatures{
 	static int totalNumberOfMonsters;
 
 	Monster(float xPosition, float yPosition, float size){
@@ -13,6 +13,15 @@ public class Monster{
 		this._nameSetter();
 		
 		totalNumberOfMonsters++;
+	}
+	
+	public void create(){
+		return;
+	}
+
+	public void draw(Graphics g){
+		g.setColor(monsterColor);
+		g.fillOval((int) xPosition,(int) yPosition, (int)size, (int)size);
 	}
 
 	private void _colorSetter(){
@@ -27,11 +36,11 @@ public class Monster{
 	}
 
 	private void _mouthSetter(){
-		mouth = new Mouth(size/4, xPosition, yPosition-size/8);
+		mouth = new Mouth(size/4, xPosition, yPosition+size/8);
 	}
 
 	private void _nameSetter(){
-		name = new Name(size, xPosition, yPosition-size);
+		name = new Name(size, xPosition, yPosition+size*5/8);
 	}
 	
 	float size;
@@ -56,7 +65,8 @@ class Eyes extends Features{
 	}
 
 	public void draw(Graphics g){
-		return;
+		g.setColor(Color.WHITE);
+		g.drawOval();
 	}
 
 	public void create(){
